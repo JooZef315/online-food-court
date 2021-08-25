@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Burger",
+      "price": 23,
+      "count": 0,
+      "inCart": false
+    },
+    {
+      "id": 2,
+      "name": "Fries",
+      "price": 16,
+      "count": 0,
+      "inCart": false
+    },
+    {
+      "id": 4,
+      "name": "pizza",
+      "price": 90,
+      "count": 0,
+      "inCart": false
+    },
+    {
+      "id": 5,
+      "name": "Cola",
+      "price": 10,
+      "count": 0,
+      "inCart": false
+    },
+    {
+      "name": "Tea",
+      "price": 5,
+      "count": 0,
+      "inCart": false,
+      "id": 6
+    }
+  ]
+}
