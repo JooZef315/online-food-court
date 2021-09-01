@@ -1,32 +1,43 @@
-import React, { Component } from 'react';
-import Item from './Item';
+import React, { Component } from "react";
+import Item from "./Item";
 
-const Cart = ({products, HandleAdd, HandleRemove, HandleSub, HandleReset}) => {    
-    return ( 
-        <div className='container float-start'>
-        {products.length === 0 && <h1>No products</h1>}
-        {products.map((prod) => {
-            return (
-                <Item 
-                key={prod.id} 
-                product={prod} 
-                onAdd={() => HandleAdd(prod)}
-                onSub={() => HandleSub(prod)}
-                onRemove={() => HandleRemove(prod)}
-                /> 
-            )
-        })} 
-        <button className='btn m-2 btn-secondary' onClick={HandleReset}>Reset</button>
-        </div> 
-     );
-}
- 
+const Cart = ({
+  products,
+  HandleAdd,
+  HandleRemove,
+  HandleSub,
+  HandleReset,
+}) => {
+  return (
+    <div className="container-fluid row align-items-center justify-content-sm-start justify-content-center col-md-9 col-lg-6 p-3">
+      {products.length === 0 && <h1 className="h1">No products!</h1>}
+      {products.map((prod) => {
+        return (
+          <Item
+            key={prod.id}
+            product={prod}
+            onAdd={() => HandleAdd(prod)}
+            onSub={() => HandleSub(prod)}
+            onRemove={() => HandleRemove(prod)}
+          />
+        );
+      })}
+      {products.length > 0 && (
+        <button
+          className="btn m-2 btn-secondary col-6 col-sm-2"
+          onClick={HandleReset}
+        >
+          Reset
+        </button>
+      )}
+    </div>
+  );
+};
+
 export default Cart;
 
-
-
 // class Cart extends Component {
-//     state = { 
+//     state = {
 //         products: [
 //             { id: 1, name: "Burger", count: 12 },
 //             { id: 2, name: "Fries", count: 5 },
@@ -60,8 +71,8 @@ export default Cart;
 //          this.setState({products:AddProducts});
 //     }
 
-//     HandleSub = (prod) => {        
-//         let SubProducts = [...this.state.products];        
+//     HandleSub = (prod) => {
+//         let SubProducts = [...this.state.products];
 //         //let p = SubProducts.find((p) => p.id === prod.id);
 //         //p.count--;
 //         //p.count > 0? p.count--: p.count=0;
@@ -72,34 +83,34 @@ export default Cart;
 //         this.setState({products:SubProducts});
 //     }
 
-//     HandleRemove = (prod) => {        
-//         let products = [...this.state.products];        
+//     HandleRemove = (prod) => {
+//         let products = [...this.state.products];
 //         let p = products.findIndex((p) => p.id === prod.id);
-//         console.log(p); 
-//         products.splice(p,1);  
+//         console.log(p);
+//         products.splice(p,1);
 //         this.setState({products});
 //     }
-    
-//     render() { 
-//         return (  
+
+//     render() {
+//         return (
 //             <div>
 //                 {this.state.products.length === 0 && <h1>No products</h1>}
-                
+
 //                 {this.state.products.map((prod) => {
 //                     return (
-//                         <Item 
-//                         key={prod.id} 
-//                         product={prod} 
+//                         <Item
+//                         key={prod.id}
+//                         product={prod}
 //                         onAdd={() => this.HandleAdd(prod)}
 //                         onSub={() => this.HandleSub(prod)}
 //                         onRemove={() => this.HandleRemove(prod)}
-//                         /> 
+//                         />
 //                     )
-//                 })} 
+//                 })}
 //                 <button className='btn m-2 btn-secondary' onClick={this.HandleReset}>Reset</button>
-//             </div>          
+//             </div>
 //              );
 //     }
 // }
- 
+
 // export default Cart;

@@ -2,7 +2,7 @@ import React from "react";
 
 const Menu = ({ products, ToggleToCart }) => {
   return (
-    <div className="container w-75">
+    <div className="container-sm">
       <h1>Menu</h1>
       <table className="table table-dark table-striped ">
         <thead>

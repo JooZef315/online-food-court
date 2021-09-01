@@ -17,7 +17,7 @@
     {
       "id": 4,
       "name": "pizza",
-      "price": 90,
+      "price": 64,
       "count": 0,
       "inCart": false
     },

@@ -6,6 +6,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  padding: 1rem;
+  border-bottom: solid 2px black;
+}
 .carted {
   color: rgb(129, 145, 145);
 }

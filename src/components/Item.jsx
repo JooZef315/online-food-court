@@ -1,31 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 const Item = (props) => {
-  return ( 
-    <div className='container row align-items-center'>
-    <span className='col-3'>{props.product.name}: </span>
-    <span className={props.product.count !== 0? "badge bg-primary col-1" : "badge bg-warning col-1"}>
-    {props.product.count}
-    </span>
-    <button className=' btn m-2 btn-primary btn-sm col-1' onClick={props.onAdd}>+</button>
-    {props.product.count <= 0?
-            <button className='btn m-2 btn-danger btn-sm col-1' onClick={props.onSub} disabled> - </button>
-            :
-            <button className='btn m-2 btn-danger btn-sm col-1' onClick={props.onSub}> - </button>
-    }
-    <button className=' btn m-1 btn-lg fas fa-trash col-1' onClick={props.onRemove}></button>
-  </div> 
-   );
-} 
+  return (
+    <div className="row align-items-center justify-content-center justify-content-sm-start p-2">
+      <span className="col-sm-3 fs-4 fw-bold">{props.product.name}: </span>
+      <span
+        className={
+          props.product.count !== 0
+            ? "badge m-2 bg-primary p-3 col-6 col-sm-1"
+            : "badge m-2 bg-warning p-3 col-6 col-sm-1"
+        }
+      >
+        {props.product.count}
+      </span>
+      <button
+        className="btn m-2 btn-primary btn-lg col-10 col-sm-1"
+        onClick={props.onAdd}
+      >
+        {"+"}
+      </button>
+      {props.product.count <= 0 ? (
+        <button
+          className="btn m-2 btn-danger btn-lg col-10 col-sm-1"
+          onClick={props.onSub}
+          disabled
+        >
+          {"-"}
+        </button>
+      ) : (
+        <button
+          className="btn m-2 btn-lg btn-danger col-10 col-sm-1"
+          onClick={props.onSub}
+        >
+          {"-"}
+        </button>
+      )}
+      <button
+        className=" btn m-1 btn-lg fas fa-trash col-10 col-sm-1"
+        onClick={props.onRemove}
+      ></button>
+    </div>
+  );
+};
 export default Item;
 
-
-
-// class Item extends Component {  
-//   // state = { 
-//   //    i : 6,   
+// class Item extends Component {
+//   // state = {
+//   //    i : 6,
 //   // }
-//   render() {     
+//   render() {
 //     return(
 //       <div>
 //         <span >{this.props.product.name}</span>
@@ -39,9 +62,9 @@ export default Item;
 //                 :
 //               <button className='btn m-1 btn-dark btn-sm' onClick={this.props.onSub}> - </button>
 //         }
-//       </div>      
+//       </div>
 //     ) ;
 //   }
 // }
- 
+
 // export default Item;
