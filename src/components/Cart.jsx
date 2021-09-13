@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
 
 const Cart = ({
@@ -8,8 +8,18 @@ const Cart = ({
   HandleSub,
   HandleReset,
 }) => {
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    let sum = 0;
+    products.forEach((product) => {
+      sum += product.price * product.count;
+    });
+    setTotal(sum);
+  }, [products]);
+
   return (
-    <div className="container-fluid row align-items-center justify-content-sm-start justify-content-center col-md-9 col-lg-6 p-3">
+    <div className="row align-items-center justify-content-center col-md-9 col-lg-6 p-3 m-auto">
       {products.length === 0 && <h1 className="h1">No products!</h1>}
       {products.map((prod) => {
         return (
@@ -23,12 +33,17 @@ const Cart = ({
         );
       })}
       {products.length > 0 && (
-        <button
-          className="btn m-2 btn-secondary col-6 col-sm-2"
-          onClick={HandleReset}
-        >
-          Reset
-        </button>
+        <>
+          <button
+            className="btn m-2 btn-secondary col-6 col-sm-2"
+            onClick={HandleReset}
+          >
+            Reset
+          </button>
+          <span className="text-center fw-bold fs-4 m-2 col-6 col-sm-9">
+            Total: {total}$
+          </span>
+        </>
       )}
     </div>
   );

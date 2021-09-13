@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { Route, Switch, Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 import Admin from "./Admin";
@@ -27,6 +27,10 @@ const App = () => {
     count: 0,
     inCart: false,
   });
+
+  useEffect(() => {
+    document.title = "Food Court";
+  }, []);
 
   useEffect(() => {
     let prdcts = fetch("http://localhost:3000/products")
@@ -64,7 +68,7 @@ const App = () => {
     // console.log(NproductToEdit);
     // console.log(productToEdit);
   };
-  //to ubdate BE
+  //to update BE
   const EditProduct = (id) => {
     axios
       .put(`http://localhost:3000/products/${id}`, productToEdit)
@@ -135,7 +139,11 @@ const App = () => {
 
   return (
     <>
-      <Navbar count={products.filter((p) => p.inCart).length} />
+      <Navbar count={products.filter((p) => p.inCart).length}>
+        <Link className="nav-link" to="/Admin">
+          Admin
+        </Link>
+      </Navbar>
       <Switch>
         <Route exact path="/Home">
           <Home />

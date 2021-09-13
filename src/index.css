@@ -6,6 +6,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.menu {
+  max-width: 1096px;
+  margin: 0 auto;
+}
+
 h1 {
   padding: 1rem;
   border-bottom: solid 2px black;

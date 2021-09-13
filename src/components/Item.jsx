@@ -2,8 +2,14 @@ import React, { Component } from "react";
 
 const Item = (props) => {
   return (
-    <div className="row align-items-center justify-content-center justify-content-sm-start p-2">
-      <span className="col-sm-3 fs-4 fw-bold">{props.product.name}: </span>
+    <div className="row align-items-center justify-content-center p-2 shadow-sm rounded">
+      <span className="col-sm-3 text-center fs-5 fw-bold">
+        {props.product.name}
+      </span>
+      <span className="col-sm-3 text-center p-1 fs-5">
+        {props.product.count !== 0 &&
+          props.product.price * props.product.count + "$"}
+      </span>
       <span
         className={
           props.product.count !== 0
