@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, Redirect, Link } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Admin from "./Admin";
 import Cart from "./Cart";
 import Add from "./forms/Add";
 import Edit from "./forms/Edit";
+import Login from "./forms/Login";
 import Home from "./Home";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
@@ -28,11 +29,10 @@ const App = () => {
     inCart: false,
   });
 
-  useEffect(() => {
-    document.title = "Food Court";
-  }, []);
+  const [islogged, setIslogged] = useState(false);
 
   useEffect(() => {
+    document.title = "Food Court";
     let prdcts = fetch("http://localhost:3000/products")
       .then((res) => {
         return res.json();
@@ -109,6 +109,7 @@ const App = () => {
     let product = cproducts.findIndex((p) => p.id === prod.id);
     cproducts[product] = { ...cproducts[product] };
     cproducts[product].inCart = !cproducts[product].inCart;
+    cproducts[product].count = 0;
     setProducts(cproducts);
   };
 
@@ -139,14 +140,21 @@ const App = () => {
 
   return (
     <>
-      <Navbar count={products.filter((p) => p.inCart).length}>
-        <Link className="nav-link" to="/Admin">
-          Admin
-        </Link>
-      </Navbar>
+      <Navbar
+        count={products.filter((p) => p.inCart).length}
+        ToggleIslogged={setIslogged}
+        islogged={islogged}
+      />
       <Switch>
         <Route exact path="/Home">
-          <Home />
+          <Home islogged={islogged} />
+        </Route>
+        <Route path="/Login">
+          {!islogged ? (
+            <Login ToggleIslogged={setIslogged} />
+          ) : (
+            <Redirect to="/Home" />
+          )}
         </Route>
         <Route path="/Menu">
           <Menu products={products} ToggleToCart={ToggleToCart} />
@@ -160,23 +168,28 @@ const App = () => {
             HandleRemove={ToggleToCart}
           />
         </Route>
-        <Route path="/Admin">
-          <Admin
-            products={products}
-            onRemove={HandleRemove}
-            toEdit={SetProductToEdit}
-          />
-        </Route>
-        <Route path="/Product/Add">
-          <Add onAdd={AddProduct} />
-        </Route>
-        <Route path="/Product/Edit/:id">
-          <Edit
-            product={productToEdit}
-            toEdit={SetProductToEdit}
-            onEdit={EditProduct}
-          />
-        </Route>
+        {islogged && (
+          <>
+            <Route path="/Admin">
+              <Admin
+                products={products}
+                onRemove={HandleRemove}
+                toEdit={SetProductToEdit}
+              />
+            </Route>
+            <Route path="/Product/Add">
+              <Add onAdd={AddProduct} />
+            </Route>
+            <Route path="/Product/Edit/:id">
+              <Edit
+                product={productToEdit}
+                toEdit={SetProductToEdit}
+                onEdit={EditProduct}
+              />
+            </Route>
+          </>
+        )}
+
         <Redirect to="/Home" />
       </Switch>
     </>

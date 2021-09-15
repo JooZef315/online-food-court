@@ -35,14 +35,19 @@ const Cart = ({
       {products.length > 0 && (
         <>
           <button
-            className="btn m-2 btn-secondary col-6 col-sm-2"
+            className="btn mt-3 btn-secondary col-6 col-sm-2"
             onClick={HandleReset}
           >
             Reset
           </button>
-          <span className="text-center fw-bold fs-4 m-2 col-6 col-sm-9">
+          <span className="text-center fw-bold fs-4 mt-2 col-8 col-sm-9">
             Total: {total}$
           </span>
+          {total > 0 && (
+            <button className="btn btn-lg mt-2 btn-success col-10 col-sm-6 col-lg-4">
+              Order Now!!
+            </button>
+          )}
         </>
       )}
     </div>

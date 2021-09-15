@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Admin = ({ products, onRemove, toEdit }) => {
   return (
-    <div className="container-sm">
+    <div className="container">
       <h1>Admin Panel</h1>
       <Link to="/Product/Add" className="btn btn-lg btn-primary mb-2">
         Add Product
