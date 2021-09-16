@@ -10,14 +10,14 @@
     {
       "id": 2,
       "name": "Fries",
-      "price": 16,
+      "price": 17,
       "count": 0,
       "inCart": false
     },
     {
       "id": 4,
       "name": "pizza",
-      "price": 64,
+      "price": 76,
       "count": 0,
       "inCart": false
     },
@@ -29,18 +29,18 @@
       "inCart": false
     },
     {
-      "name": "Tea",
+      "id": 7,
+      "name": "fried chicken",
+      "price": 107,
+      "count": 0,
+      "inCart": false
+    },
+    {
+      "name": "water",
       "price": 5,
       "count": 0,
       "inCart": false,
-      "id": 6
-    },
-    {
-      "id": 7,
-      "name": "fried chicken",
-      "price": 109,
-      "count": 0,
-      "inCart": false
+      "id": 8
     }
   ]
 }

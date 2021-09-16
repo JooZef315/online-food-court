@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
+  const onLogout = () => {
+    sessionStorage.removeItem("logged");
+    location.replace("/Home");
+  };
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container-fluid">
@@ -36,8 +41,8 @@ const Navbar = (props) => {
           {props.islogged && (
             <Link
               className="btn btn-sm text-light bg-danger col-6 col-sm-2 col-lg-1 m-auto me-sm-5"
-              to="/"
-              onClick={() => props.ToggleIslogged(false)}
+              to="/Home"
+              onClick={onLogout}
             >
               Sign out!
             </Link>

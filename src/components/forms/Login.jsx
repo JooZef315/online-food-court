@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Joi from "joi-browser";
 
-const Login = ({ ToggleIslogged }) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -18,7 +18,8 @@ const Login = ({ ToggleIslogged }) => {
     event.preventDefault();
     const { usernameErrMes, passwordErrMes } = validate();
     if (!usernameErrMes && !passwordErrMes) {
-      ToggleIslogged(true);
+      sessionStorage.setItem("logged", "admin");
+      location.replace("/Home");
     }
   };
 

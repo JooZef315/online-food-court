@@ -18,6 +18,8 @@ const App = () => {
   //     { id: 3, name: "Cola", count: 3 },
   //   ])
 
+  const [logging, setLgging] = useState(sessionStorage.getItem("logged"));
+
   const [products, setProducts] = useState([]);
 
   //for text inputs
@@ -28,8 +30,6 @@ const App = () => {
     count: 0,
     inCart: false,
   });
-
-  const [islogged, setIslogged] = useState(false);
 
   useEffect(() => {
     document.title = "Food Court";
@@ -142,19 +142,14 @@ const App = () => {
     <>
       <Navbar
         count={products.filter((p) => p.inCart).length}
-        ToggleIslogged={setIslogged}
-        islogged={islogged}
+        islogged={logging}
       />
       <Switch>
         <Route exact path="/Home">
-          <Home islogged={islogged} />
+          <Home islogged={logging} />
         </Route>
         <Route path="/Login">
-          {!islogged ? (
-            <Login ToggleIslogged={setIslogged} />
-          ) : (
-            <Redirect to="/Home" />
-          )}
+          {!logging ? <Login /> : <Redirect to="/Home" />}
         </Route>
         <Route path="/Menu">
           <Menu products={products} ToggleToCart={ToggleToCart} />
@@ -168,8 +163,8 @@ const App = () => {
             HandleRemove={ToggleToCart}
           />
         </Route>
-        {islogged && (
-          <>
+        {logging && (
+          <Switch>
             <Route path="/Admin">
               <Admin
                 products={products}
@@ -187,7 +182,7 @@ const App = () => {
                 onEdit={EditProduct}
               />
             </Route>
-          </>
+          </Switch>
         )}
 
         <Redirect to="/Home" />

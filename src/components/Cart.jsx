@@ -44,7 +44,10 @@ const Cart = ({
             Total: {total}$
           </span>
           {total > 0 && (
-            <button className="btn btn-lg mt-2 btn-success col-10 col-sm-6 col-lg-4">
+            <button
+              className="btn btn-lg mt-2 btn-success col-10 col-sm-6 col-lg-4"
+              onClick={() => alert(`You have made an order with ${total}$`)}
+            >
               Order Now!!
             </button>
           )}

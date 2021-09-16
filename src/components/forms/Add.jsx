@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Joi from "joi-browser";
+import { validate } from "./validation";
 
 const Add = (props) => {
   const [name, setName] = useState("");
@@ -9,25 +9,9 @@ const Add = (props) => {
     priceErrMes: null,
   });
 
-  let schema = {
-    name: Joi.string().required(),
-    price: Joi.number().required(),
-  };
-
-  const validate = () => {
-    const valdation = Joi.validate({ name, price }, schema, {
-      abortEarly: false,
-    });
-    let erroeMess = valdation.error ? valdation.error.details : [];
-    let nameErrMes = erroeMess.filter((e) => e.path == "name")[0]?.message;
-    let priceErrMes = erroeMess.filter((e) => e.path == "price")[0]?.message;
-
-    setErrors({ nameErrMes, priceErrMes });
-    return { nameErrMes, priceErrMes };
-  };
-
   const handleSubmit = (event) => {
-    const { nameErrMes, priceErrMes } = validate();
+    event.preventDefault();
+    const { nameErrMes, priceErrMes } = validate(name, price);
     if (!nameErrMes && !priceErrMes) {
       let newProduct = {
         name: name,
@@ -36,14 +20,15 @@ const Add = (props) => {
         inCart: false,
       };
       props.onAdd(newProduct);
+    } else {
+      setErrors({ nameErrMes, priceErrMes });
     }
-    event.preventDefault();
   };
   return (
     <div className="container">
       <h1>Add Product</h1>
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+        <div>
           <label htmlFor="name" className="form-label">
             Product name
           </label>
@@ -58,7 +43,7 @@ const Add = (props) => {
         {errors.nameErrMes && (
           <div className="alert alert-danger">{errors.nameErrMes}</div>
         )}
-        <div className="mb-3">
+        <div className="mb-3 mt-3">
           <label htmlFor="price" className="form-label">
             price
           </label>
